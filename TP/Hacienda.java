@@ -10,6 +10,7 @@ public abstract class Hacienda {
     public abstract int getCantidadAnimales();
     public abstract int getEdad();
     public abstract float getPeso();
+    public abstract void balanzaAlPaso(int identificador, int peso);
 
     // Llama a la funcion llenarCamion la cantidad de veces necesarias que es igual a la capacidad maxima del camion
     public ArrayList<Hacienda> llenarCamion(int capacidad, Condicion c){

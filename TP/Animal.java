@@ -117,4 +117,12 @@ public class Animal extends Hacienda{
         }
         return g;
     }
+
+
+    @Override
+    public void balanzaAlPaso(int id, int peso) {
+        if(identificador==id){
+            this.setPeso(peso);
+        }
+    }
 }

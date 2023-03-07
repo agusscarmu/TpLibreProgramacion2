@@ -80,6 +80,14 @@ public class Rodeo extends Hacienda{
         return ganadoListo;
     }
 
+    @Override
+    // La balanza al paso me trae el peso y el identificador del animal para pesarlo automaticamente
+    public void balanzaAlPaso(int identificador, int peso) {
+        for(Hacienda g:ganado){
+            g.balanzaAlPaso(identificador, peso);
+        }
+    }
+
 
 
 }
