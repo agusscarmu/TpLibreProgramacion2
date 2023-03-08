@@ -5,25 +5,21 @@ import java.util.ArrayList;
 import TP.Condiciones.Condicion;
 
 public class Animal extends Hacienda{
-    public enum Sexo{
-        Macho,
-        Hembra
-    }
 
     private int identificador,ternerosParidos,edad;
     private float peso;
     private String raza;
-    private Sexo sexo;
+    private boolean macho;
     private boolean capado;
     
-    public Animal(int identificador, int ternerosParidos, int edad, float peso, String raza, Sexo sexo,
+    public Animal(int identificador, int ternerosParidos, int edad, float peso, String raza, boolean macho,
             boolean capado) {
         this.identificador = identificador;
         this.ternerosParidos = ternerosParidos;
         this.edad = edad;
         this.peso = peso;
         this.raza = raza;
-        this.sexo = sexo;
+        this.macho = macho;
         this.capado = capado;
     }
     
@@ -48,8 +44,8 @@ public class Animal extends Hacienda{
     }
 
     
-    public Sexo getSexo() {
-        return sexo;
+    public boolean esMacho() {
+        return macho;
     }
     
 
@@ -92,8 +88,8 @@ public class Animal extends Hacienda{
 
 
 
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
+    public void setSexo(boolean macho) {
+        this.macho = macho;
     }
 
 
@@ -110,8 +106,8 @@ public class Animal extends Hacienda{
 
     @Override
     // Si cumple con la condicion retorno el animal en el arreglo, sino devuelvo el arreglo vacio
-    public ArrayList<Hacienda> llenarCamion(Condicion c) {
-        ArrayList<Hacienda>g=new ArrayList<>();
+    public ArrayList<Animal> cargar(Condicion c) {
+        ArrayList<Animal>g=new ArrayList<>();
         if(c.cumple(this)){
             g.add(this);
         }

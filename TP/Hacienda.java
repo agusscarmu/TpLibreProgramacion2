@@ -13,13 +13,14 @@ public abstract class Hacienda {
     public abstract void balanzaAlPaso(int identificador, int peso);
 
     // Llama a la funcion llenarCamion la cantidad de veces necesarias que es igual a la capacidad maxima del camion
-    public ArrayList<Hacienda> llenarCamion(int capacidad, Condicion c){
-        ArrayList<Hacienda>g = new ArrayList<>();
-        for(int i=0;i<capacidad;i++){
-            g.addAll(this.llenarCamion(c));
+    public ArrayList<Animal> llenarCamion(int capacidad, Condicion c){
+        ArrayList<Animal>g = new ArrayList<>(this.cargar(c));
+        ArrayList<Animal>animales=new ArrayList<>();
+        for(int i=0;animales.size()<=capacidad || i<g.size();i++){
+            animales.add(g.get(i));
         }
-        return g;
+        return animales;
     }
 
-    public abstract ArrayList<Hacienda> llenarCamion(Condicion c);
+    public abstract ArrayList<Animal> cargar(Condicion c);
 }

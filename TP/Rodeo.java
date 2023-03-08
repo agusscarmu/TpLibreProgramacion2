@@ -44,18 +44,16 @@ public class Rodeo extends Hacienda{
     @Override
     //Obtengo el promedio de los pesos de los animales
     public float getPeso() {
-        int peso=0;
-        for(Hacienda g:ganado){
-            peso+=g.getPeso();
-        }
-        peso/=getCantidadAnimales();
-        return peso;
+        return getPesoTotal()/getCantidadAnimales();
     }
     
     // Obtengo el peso total de todos los animales
     public float getPesoTotal(){
-        float pesoTotal = getPeso()*getCantidadAnimales();
-        return pesoTotal;
+        int peso=0;
+        for(Hacienda g:ganado){
+            peso+=g.getPeso();
+        }
+        return peso;
     }
 
     // Corrobora si el Rodeo/Establecimiento/Empresa esa lista para la venta con la condicion establecida
@@ -63,19 +61,25 @@ public class Rodeo extends Hacienda{
         return c.cumple(this);
     }
 
-    // Una vez cargados en el camion se dan de baja los ganados cargados
-    public void darDeBajaGanados(ArrayList<Hacienda>carga){
-        for(Hacienda c:carga){
+    // Una vez cargados en el camion se dan de baja los animales cargados
+    public void darDeBajaGanados(ArrayList<Animal>carga){
+        for(Hacienda g:ganado){
+            try{
+                ((Rodeo)g).darDeBajaGanados(carga);         
+            }catch(Exception e){                                //PROBAR, SI NO FUNCIONA HACER FUNCION ABSTRACTA
+            }
+        }
+        for(Animal c:carga){
             ganado.remove(c);
         }
     }
 
     @Override
     // carga el camion la cantidad de veces solicitada en Hacienda junto a una condicion
-    public ArrayList<Hacienda> llenarCamion(Condicion c) {
-        ArrayList<Hacienda>ganadoListo=new ArrayList<>();
+    public ArrayList<Animal> cargar(Condicion c) {
+        ArrayList<Animal> ganadoListo=new ArrayList<>();
         for(Hacienda g:ganado){
-            ganadoListo.addAll(g.llenarCamion(c));
+            ganadoListo.addAll(g.cargar(c));
         }
         return ganadoListo;
     }

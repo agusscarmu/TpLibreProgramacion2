@@ -1,0 +1,125 @@
+package TP;
+
+import TP.Condiciones.Condicion;
+import TP.Condiciones.CondicionAnd;
+import TP.Condiciones.CondicionCapado;
+import TP.Condiciones.CondicionNot;
+import TP.Condiciones.CondicionOr;
+import TP.Condiciones.CondicionPorEdadMenor;
+import TP.Condiciones.CondicionPorMacho;
+import TP.Condiciones.CondicionPorPesoMenor;
+import TP.Condiciones.CondicionPorRaza;
+import TP.Condiciones.CondicionPorTernerosParidosMenor;
+
+public class Principal {
+    
+    public static void main(String[]args){
+        Rodeo establecimiento = new Rodeo();
+        Rodeo establecimiento1 = new Rodeo();
+        Rodeo establecimiento2 = new Rodeo();
+        Rodeo rodeo1 = new Rodeo();
+        Rodeo rodeo2 = new Rodeo();
+        Rodeo rodeo3 = new Rodeo();
+        Rodeo rodeo4 = new Rodeo();
+        Rodeo rodeo5 = new Rodeo();
+
+        Animal animal1 = new Animal(12, 0, 8, 80, "Jersey", false, false);
+        Animal animal2 = new Animal(13, 1, 31, 80, "Jersey", false, false);
+        Animal animal3 = new Animal(14, 4, 8, 80, "Brangus", false, false);
+        Animal animal4 = new Animal(16, 0, 8, 80, "Angus", true, false);
+        Animal animal5 = new Animal(17, 0, 28, 250, "Hereford", true, true);
+        Animal animal6 = new Animal(17, 0, 29, 259, "Hereford", true, false);
+        Animal animal7 = new Animal(118, 3, 8, 80, "Jersey", false, false);
+        Animal animal8 = new Animal(19, 0, 5, 70, "Angus", true, false);
+        Animal animal9 = new Animal(20, 0, 4, 50, "Angus", true, false);
+        Animal animal10 = new Animal(132, 0, 38, 400, "Angus", true, true);
+        Animal animal11 = new Animal(142, 2, 15, 220, "Hereford", true, false);
+        Animal animal12 = new Animal(152, 0, 28, 305, "Hereford", true, true);
+        Animal animal13 = new Animal(126, 0, 18, 170, "Jersey", false, false);
+        Animal animal14 = new Animal(127, 1, 10, 140, "Brangus", false, false);
+        Animal animal15 = new Animal(128, 5, 59, 350, "Brangus", false, false);
+
+        rodeo1.addGanado(animal1);
+        rodeo1.addGanado(animal2);
+        rodeo1.addGanado(animal3);
+        rodeo2.addGanado(animal4);
+        rodeo2.addGanado(animal4);
+        rodeo2.addGanado(animal5);
+        rodeo2.addGanado(animal6);
+        rodeo3.addGanado(animal7);
+        rodeo3.addGanado(animal8);
+        rodeo4.addGanado(animal9);
+        rodeo4.addGanado(animal10);
+        rodeo4.addGanado(animal11);
+        rodeo5.addGanado(animal12);
+        rodeo5.addGanado(animal13);
+        rodeo5.addGanado(animal14);
+        rodeo5.addGanado(animal15);
+        
+        establecimiento1.addGanado(rodeo1);
+        establecimiento1.addGanado(rodeo2);
+        establecimiento1.addGanado(rodeo3);
+        establecimiento2.addGanado(rodeo4);
+        establecimiento2.addGanado(rodeo5);
+
+        establecimiento.addGanado(establecimiento1);
+        establecimiento.addGanado(establecimiento2);
+
+        Condicion cEdadMenor = new CondicionPorEdadMenor(20);
+        Condicion cMacho = new CondicionPorMacho();
+        Condicion cPesoMenor = new CondicionPorPesoMenor(250);
+        Condicion cPorRaza = new CondicionPorRaza("Angus");
+        Condicion cPorParidos = new CondicionPorTernerosParidosMenor(3);
+        Condicion cCapado = new CondicionCapado();
+        Condicion cAnd = new CondicionAnd(cEdadMenor, cMacho);
+        Condicion cOr = new CondicionOr(cPorRaza, cCapado);
+        Condicion cNot = new CondicionNot(cMacho);
+        
+        CamionDeVenta camion1 = new CamionDeVenta(14, cNot);
+        CamionDeVenta camion2 = new CamionDeVenta(20, cAnd);
+        CamionDeVenta camion3 = new CamionDeVenta(30, cPesoMenor);
+        CamionDeVenta camion4 = new CamionDeVenta(10, cMacho);
+        CamionDeVenta camion5 = new CamionDeVenta(6, cPorParidos);
+
+        Ministerio ministerio = new Ministerio();
+
+        Condicion condicionLechal = new CondicionPorEdadMenor(8);
+                Condicion condicionMayor1 = new CondicionNot(condicionLechal);
+                Condicion condicionT = new CondicionPorEdadMenor(12);
+        Condicion condicionTernero = new CondicionAnd(condicionT, condicionMayor1);
+                Condicion condicionMayor2 = new CondicionNot(condicionT);
+                Condicion condicionT2 = new CondicionPorEdadMenor(12);
+        Condicion condicionAniojo = new CondicionAnd(condicionMayor2, condicionT2);
+                Condicion condicionMayor3 = new CondicionNot(new CondicionPorEdadMenor(24));
+        Condicion condicionCebon = new CondicionPorEdadMenor(48);
+        Condicion condicionNovillo = new CondicionAnd(condicionMayor3, condicionCebon);
+                Condicion condicionVacas = new CondicionNot(new CondicionPorEdadMenor(15));
+        Condicion condicionVaquillona = new CondicionAnd(condicionVacas, new CondicionPorTernerosParidosMenor(1));
+        Condicion condicionVaca = new CondicionAnd(condicionVacas, new CondicionNot(new CondicionPorTernerosParidosMenor(0)));
+        Condicion condicionBuey = new CondicionAnd(new CondicionNot(condicionCebon), new CondicionCapado());
+        Condicion condicionToro = new CondicionAnd(new CondicionNot(new CondicionCapado()), new CondicionPorMacho());
+
+        ClasificacionAnimal Lechal = new ClasificacionAnimal("Lechal", condicionLechal);
+        ClasificacionAnimal Ternero = new ClasificacionAnimal("Ternero", condicionTernero);
+        ClasificacionAnimal Aniojo = new ClasificacionAnimal("Aniojo", condicionAniojo);
+        ClasificacionAnimal Cebon = new ClasificacionAnimal("Cebon", condicionCebon);
+        ClasificacionAnimal Novillo = new ClasificacionAnimal("Novillo", condicionNovillo);
+        ClasificacionAnimal Vaquillona = new ClasificacionAnimal("Vaquillona", condicionVaquillona);
+        ClasificacionAnimal Vaca = new ClasificacionAnimal("Vaca", condicionVaca);
+        ClasificacionAnimal Buey = new ClasificacionAnimal("Buey", condicionBuey);
+        ClasificacionAnimal Toro = new ClasificacionAnimal("Toro", condicionToro);
+
+        ministerio.agregarClasificacion(Lechal);
+        ministerio.agregarClasificacion(Ternero);
+        ministerio.agregarClasificacion(Aniojo);
+        ministerio.agregarClasificacion(Cebon);
+        ministerio.agregarClasificacion(Novillo);
+        ministerio.agregarClasificacion(Vaquillona);
+        ministerio.agregarClasificacion(Vaca);
+        ministerio.agregarClasificacion(Buey);
+        ministerio.agregarClasificacion(Toro);
+
+        
+        
+    }
+}
