@@ -10,6 +10,7 @@ public class ClasificacionAnimal {
     private Condicion condicion;
 
     public ClasificacionAnimal(String nombreClasificacion, Condicion condicion){
+        this.animales=new ArrayList<>();
         this.nombreClasificacion=nombreClasificacion;
         this.condicion=condicion;
     }
@@ -40,5 +41,10 @@ public class ClasificacionAnimal {
     public ArrayList<Animal> getAnimales(){
         ArrayList<Animal>animalesCopia=new ArrayList<>(animales);
         return animalesCopia;
+    }
+
+    @Override
+    public String toString() {
+        return "\n\nClasificacion: "+nombreClasificacion+",Animales: "+animales;
     }
 }

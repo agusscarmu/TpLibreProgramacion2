@@ -13,6 +13,11 @@ public class CamionDeVenta {
         this.capacidadDeCarga=capacidadDeCarga;
         this.condicionDeCarga=condicionDeCarga;
         this.carga=new ArrayList<>();
+    }   
+
+    public ArrayList<Animal> verCarga(){
+        ArrayList<Animal>cargaCopia=new ArrayList<>(carga);
+        return cargaCopia;
     }
 
     public void setCapacidadDeCarga(int c){

@@ -1,7 +1,6 @@
 package TP.Condiciones;
 
 import TP.Hacienda;
-import TP.Rodeo;
 
 public class CondicionPorPesoMenor extends Condicion{
 
@@ -17,7 +16,7 @@ public class CondicionPorPesoMenor extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return h.getPeso()<peso;
+        return h.getPesoComparable()<peso;
     }
     
 }

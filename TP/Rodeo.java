@@ -21,34 +21,43 @@ public class Rodeo extends Hacienda{
     }
 
     @Override
+    public ArrayList<Animal> getAnimales(){
+        ArrayList<Animal>a=new ArrayList<>();
+        for(Hacienda g:ganado){
+            a.addAll(g.getAnimales());
+        }
+        return a;
+    }
+    @Override
     // Obtengo la cantidad total de animales
     public int getCantidadAnimales(){
-        int cantidad=0;
-        for(Hacienda g:ganado){
-            cantidad+=g.getCantidadAnimales();
-        }
-        return cantidad;
-    }
-
-    @Override
-    //Obtengo el promedio de las edades de los animales
-    public int getEdad(){
-        int promedio=0;
-        for(Hacienda g:ganado){
-            promedio+=g.getEdad();
-        }
-        promedio/=getCantidadAnimales();
-        return promedio;
-    }
-
-    @Override
-    //Obtengo el promedio de los pesos de los animales
-    public float getPeso() {
-        return getPesoTotal()/getCantidadAnimales();
+        return getAnimales().size();
     }
     
-    // Obtengo el peso total de todos los animales
-    public float getPesoTotal(){
+
+    //Obtengo el promedio de las edades de los animales
+    public float getEdadComparable(){
+        return (float)getEdad()/getCantidadAnimales();
+    }
+
+    @Override
+    public int getEdad(){
+        int edad=0;
+        for(Hacienda g:ganado){
+            edad+=g.getEdad();                                     //CONTROLAR!
+        }
+        return edad;
+    }
+    
+   
+    // Obtengo el peso promedio de todos los animales
+    public float getPesoComparable() {
+        return getPeso()/getCantidadAnimales();
+    }
+
+    @Override
+    //Obtengo el total de los pesos de los animales
+    public float getPeso(){
         int peso=0;
         for(Hacienda g:ganado){
             peso+=g.getPeso();
@@ -61,17 +70,32 @@ public class Rodeo extends Hacienda{
         return c.cumple(this);
     }
 
-    // Una vez cargados en el camion se dan de baja los animales cargados
-    public void darDeBajaGanados(ArrayList<Animal>carga){
+    @Override
+    public Hacienda eliminarGanado(ArrayList<Animal> a){
+        ArrayList<Hacienda> ganadoNoEliminado = new ArrayList<>();
         for(Hacienda g:ganado){
-            try{
-                ((Rodeo)g).darDeBajaGanados(carga);         
-            }catch(Exception e){                                //PROBAR, SI NO FUNCIONA HACER FUNCION ABSTRACTA
+            Hacienda noEliminado = g.eliminarGanado(a);
+            if(noEliminado!=null){
+                ganadoNoEliminado.add(noEliminado);
             }
         }
-        for(Animal c:carga){
-            ganado.remove(c);
+        Hacienda copiaClase = newInstance();
+        for(Hacienda g:ganadoNoEliminado){
+            ((Rodeo)copiaClase).addGanado(g);
         }
+        return copiaClase;
+    }
+
+    // Una vez cargados en el camion se dan de baja los animales cargados
+    public void darDeBajaGanados(ArrayList<Animal>carga){
+        ganado=((Rodeo)eliminarGanado(carga)).getGanado();
+        // for(Hacienda g:ganado){
+        //     if(g instanceof Rodeo)
+        //         ((Rodeo)g).darDeBajaGanados(carga);         
+        // }
+        // for(Animal c:carga){
+        //     ganado.remove(c);
+        // }
     }
 
     @Override
@@ -92,6 +116,8 @@ public class Rodeo extends Hacienda{
         }
     }
 
-
+    public Hacienda newInstance(){
+        return new Rodeo();
+    }
 
 }

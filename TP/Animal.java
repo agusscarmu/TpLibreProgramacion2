@@ -121,4 +121,41 @@ public class Animal extends Hacienda{
             this.setPeso(peso);
         }
     }
+
+    @Override
+    public ArrayList<Animal>getAnimales(){
+        ArrayList<Animal>a=new ArrayList<>();
+        a.add(this);
+        return a;
+    }
+
+    @Override
+    public String toString() {
+        return "\nIdentificador: "+identificador+",Raza: "+raza+",Edad: "+edad+",Peso: "+peso+",Macho: "+macho ;
+    }
+
+    @Override
+    public float getPesoComparable(){
+        return getPeso();
+    }
+
+
+    @Override
+    public float getEdadComparable() {
+        return (float)getEdad();
+    }
+
+
+    @Override
+    public Hacienda eliminarGanado(ArrayList<Animal> a) {
+        if(!a.contains(this)){
+            Hacienda animalCopia = newInstance();
+            return animalCopia;
+        }else
+            return null;
+    }
+
+    public Hacienda newInstance(){
+        return new Animal(this.identificador, this.ternerosParidos, this.edad, this.peso, this.raza, this.macho, this.capado);
+    }
 }

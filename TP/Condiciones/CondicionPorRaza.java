@@ -2,7 +2,6 @@ package TP.Condiciones;
 
 import TP.Animal;
 import TP.Hacienda;
-import TP.Rodeo;
 
 public class CondicionPorRaza extends Condicion{
     private String raza;

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Ministerio {
     ArrayList<ClasificacionAnimal>clasificaciones;
 
+    public Ministerio(){
+        this.clasificaciones=new ArrayList<>();
+    }
+
     public void agregarClasificacion(ClasificacionAnimal clasificacion){
         clasificaciones.add(clasificacion);
     }
@@ -18,5 +22,10 @@ public class Ministerio {
         for(ClasificacionAnimal c:clasificaciones){
             c.comprobar(animal);
         }
+    }
+
+    @Override
+    public String toString() {
+        return clasificaciones.toString();
     }
 }
