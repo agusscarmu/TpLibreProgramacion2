@@ -70,6 +70,10 @@ public class Rodeo extends Hacienda{
         return c.cumple(this);
     }
 
+    /*
+    eliminarGanado lo que hace es hacer una copia exacta de la estructura de la que se llama pero sin
+    incluir los elementos de "a", los cuales son los animales que ya fueron cargados en el camion.
+    */
     @Override
     public Hacienda eliminarGanado(ArrayList<Animal> a){
         ArrayList<Hacienda> ganadoNoEliminado = new ArrayList<>();
@@ -86,16 +90,13 @@ public class Rodeo extends Hacienda{
         return copiaClase;
     }
 
-    // Una vez cargados en el camion se dan de baja los animales cargados
+    /*
+    Una vez cargados en el camion se dan de baja los animales cargados
+    Para esto la Lista "ganado" toma el valor de la lista de la funcion "eliminarGanado" en donde se 'eliminan' los
+    animales que fueron cargados 
+    */
     public void darDeBajaGanados(ArrayList<Animal>carga){
         ganado=((Rodeo)eliminarGanado(carga)).getGanado();
-        // for(Hacienda g:ganado){
-        //     if(g instanceof Rodeo)
-        //         ((Rodeo)g).darDeBajaGanados(carga);         
-        // }
-        // for(Animal c:carga){
-        //     ganado.remove(c);
-        // }
     }
 
     @Override

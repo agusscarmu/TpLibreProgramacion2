@@ -140,32 +140,31 @@ public class Principal {
 
         // System.out.println();
         // //PRUEBA CARGA Y DESCARGA DEL CAMION
-        if(establecimiento.listoParaVenta(cPesoMenor)){
-        System.out.println(establecimiento.cargar(cEdadMenor));
-        camion2.cargarCamion(establecimiento);
-        System.out.println("\n");
-        System.out.println("Carga camion: "+camion2.verCarga());
-        System.out.println("\n");
-        System.out.println(establecimiento.cargar(cEdadMenor));
-        camion2.descargarCamion();
-        System.out.println("\n");
-        camion2.cargarCamion(establecimiento);
-        System.out.println("\n");
-        System.out.println("Carga camion: "+camion2.verCarga());
-        System.out.println("\n");
-        System.out.println(establecimiento.cargar(cEdadMenor));
-        camion2.descargarCamion();
-        System.out.println("\n");
-        System.out.println(camion2.verCarga());
-        }
+        // if(establecimiento.listoParaVenta(cPesoMenor)){
+        // System.out.println(establecimiento.cargar(cEdadMenor));
+        // camion2.cargarCamion(establecimiento);
+        // System.out.println("\n");
+        // System.out.println("Carga camion: "+camion2.verCarga());
+        // System.out.println("\n");
+        // System.out.println(establecimiento.cargar(cEdadMenor));
+        // camion2.descargarCamion();
+        // System.out.println("\n");
+        // camion2.cargarCamion(establecimiento);
+        // System.out.println("\n");
+        // System.out.println("Carga camion: "+camion2.verCarga());
+        // System.out.println("\n");
+        // System.out.println(establecimiento.cargar(cEdadMenor));
+        // camion2.descargarCamion();
+        // System.out.println("\n");
+        // System.out.println(camion2.verCarga());
+        // }
         
-        for(Animal a:establecimiento.getAnimales()){
-            ministerio.clasificarAnimal(a);
-        }
+        // for(Animal a:establecimiento.getAnimales()){
+        //     ministerio.clasificarAnimal(a);
+        // }
 
         // System.out.println(ministerio);
 
-        
 
     }
 }
