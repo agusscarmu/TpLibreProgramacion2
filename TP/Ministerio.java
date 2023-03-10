@@ -3,23 +3,31 @@ package TP;
 import java.util.ArrayList;
 
 public class Ministerio {
-    ArrayList<ClasificacionAnimal>clasificaciones;
+    ArrayList<CategoriaAnimal>clasificaciones;
+    private static Ministerio instancia;
 
-    public Ministerio(){
+    private Ministerio(){
         this.clasificaciones=new ArrayList<>();
     }
 
-    public void agregarClasificacion(ClasificacionAnimal clasificacion){
+    public static Ministerio getInstance(){
+        if(instancia==null){
+            instancia=new Ministerio();
+        }
+        return instancia;
+    }
+    
+    public void agregarClasificacion(CategoriaAnimal clasificacion){
         clasificaciones.add(clasificacion);
     }
 
-    public void borrarClasificacion(ClasificacionAnimal clasificacion){
+    public void borrarClasificacion(CategoriaAnimal clasificacion){
         clasificaciones.remove(clasificacion);
     }
 
     // Clasificar un animal dentro de todas las clasificaciones (cargadas previamente) posibles
     public void clasificarAnimal(Animal animal){
-        for(ClasificacionAnimal c:clasificaciones){
+        for(CategoriaAnimal c:clasificaciones){
             c.comprobar(animal);
         }
     }

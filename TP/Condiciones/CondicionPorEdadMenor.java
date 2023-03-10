@@ -16,6 +16,6 @@ public class CondicionPorEdadMenor extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return h.getEdadComparable()<edad;
+        return h.getEdad()<edad;
     }
 }

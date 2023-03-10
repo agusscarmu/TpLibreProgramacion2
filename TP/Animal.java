@@ -11,6 +11,7 @@ public class Animal extends Hacienda{
     private String raza;
     private boolean macho;
     private boolean capado;
+    private ArrayList<CategoriaAnimal> categorias;
     
     public Animal(int identificador, int ternerosParidos, int edad, float peso, String raza, boolean macho,
             boolean capado) {
@@ -23,7 +24,17 @@ public class Animal extends Hacienda{
         this.capado = capado;
     }
     
+    public ArrayList<CategoriaAnimal> getCategorias(){
+        ArrayList<CategoriaAnimal> copia = new ArrayList<>(categorias);
+        return copia;
+    }
 
+    public void addCategoria(CategoriaAnimal c){
+        if(!categorias.contains(c)){
+            categorias.add(c);
+        }
+    }
+    
     public int getTernerosParidos() {
         return ternerosParidos;
     }
@@ -129,33 +140,21 @@ public class Animal extends Hacienda{
         return a;
     }
 
+    
+    @Override
+    public boolean darDeBajaGanado(ArrayList<Animal> a) {
+        return a.contains(this);
+    }
+    
+    
+    @Override
+    public void categorizarAnimal() {
+        Ministerio ministerio = Ministerio.getInstance();
+        ministerio.clasificarAnimal(this);
+    }
+
     @Override
     public String toString() {
         return "\nIdentificador: "+identificador+",Raza: "+raza+",Edad: "+edad+",Peso: "+peso+",Macho: "+macho ;
-    }
-
-    @Override
-    public float getPesoComparable(){
-        return getPeso();
-    }
-
-
-    @Override
-    public float getEdadComparable() {
-        return (float)getEdad();
-    }
-
-
-    @Override
-    public Hacienda eliminarGanado(ArrayList<Animal> a) {
-        if(!a.contains(this)){
-            Hacienda animalCopia = newInstance();
-            return animalCopia;
-        }else
-            return null;
-    }
-
-    public Hacienda newInstance(){
-        return new Animal(this.identificador, this.ternerosParidos, this.edad, this.peso, this.raza, this.macho, this.capado);
     }
 }

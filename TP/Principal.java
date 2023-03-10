@@ -80,7 +80,7 @@ public class Principal {
         CamionDeVenta camion4 = new CamionDeVenta(8, cMacho);
         CamionDeVenta camion5 = new CamionDeVenta(6, cPorParidos);
 
-        Ministerio ministerio = new Ministerio();
+        Ministerio ministerio = Ministerio.getInstance();
 
         Condicion condicionLechal = new CondicionPorEdadMenor(8);
                 Condicion condicionMayor1 = new CondicionNot(condicionLechal);
@@ -99,15 +99,15 @@ public class Principal {
         Condicion condicionBuey = new CondicionAnd(new CondicionNot(condicionCebon), new CondicionCapado());
         Condicion condicionToro = new CondicionAnd(new CondicionNot(new CondicionCapado()), new CondicionPorMacho());
 
-        ClasificacionAnimal Lechal = new ClasificacionAnimal("Lechal", condicionLechal);
-        ClasificacionAnimal Ternero = new ClasificacionAnimal("Ternero", condicionTernero);
-        ClasificacionAnimal Aniojo = new ClasificacionAnimal("Aniojo", condicionAniojo);
-        ClasificacionAnimal Cebon = new ClasificacionAnimal("Cebon", condicionCebon);
-        ClasificacionAnimal Novillo = new ClasificacionAnimal("Novillo", condicionNovillo);
-        ClasificacionAnimal Vaquillona = new ClasificacionAnimal("Vaquillona", condicionVaquillona);
-        ClasificacionAnimal Vaca = new ClasificacionAnimal("Vaca", condicionVaca);
-        ClasificacionAnimal Buey = new ClasificacionAnimal("Buey", condicionBuey);
-        ClasificacionAnimal Toro = new ClasificacionAnimal("Toro", condicionToro);
+        CategoriaAnimal Lechal = new CategoriaAnimal("Lechal", condicionLechal);
+        CategoriaAnimal Ternero = new CategoriaAnimal("Ternero", condicionTernero);
+        CategoriaAnimal Aniojo = new CategoriaAnimal("Aniojo", condicionAniojo);
+        CategoriaAnimal Cebon = new CategoriaAnimal("Cebon", condicionCebon);
+        CategoriaAnimal Novillo = new CategoriaAnimal("Novillo", condicionNovillo);
+        CategoriaAnimal Vaquillona = new CategoriaAnimal("Vaquillona", condicionVaquillona);
+        CategoriaAnimal Vaca = new CategoriaAnimal("Vaca", condicionVaca);
+        CategoriaAnimal Buey = new CategoriaAnimal("Buey", condicionBuey);
+        CategoriaAnimal Toro = new CategoriaAnimal("Toro", condicionToro);
 
         ministerio.agregarClasificacion(Lechal);
         ministerio.agregarClasificacion(Ternero);
@@ -121,15 +121,15 @@ public class Principal {
 
         int cantidadDeAnimales=establecimiento1.getCantidadAnimales();
         // System.out.println(cantidadDeAnimales);
-        float promedioEdad = establecimiento2.getEdadComparable();
+        float promedioEdad = establecimiento2.getEdad();
         float promedioedad1 = rodeo4.getEdad();
         float promedioedad2 = rodeo5.getEdad();
-        // System.out.println(promedioEdad);
+        System.out.println(promedioEdad);
         // // System.out.println(promedioedad1);
         // // System.out.println(promedioedad2);
         // // System.out.println(promedioEdad);
-        // float peso = establecimiento1.getPesoComparable();
-        // System.out.println(peso);
+        float peso = establecimiento1.getPesoTotal();
+        System.out.println(peso);
         // Condicion cPMenorPrueba = new CondicionPorPesoMenor(380);
         // Condicion Prueba = new CondicionNot(cPMenorPrueba);
         // System.out.println(establecimiento1.listoParaVenta(cPMenorPrueba));
@@ -158,12 +158,6 @@ public class Principal {
         // System.out.println("\n");
         // System.out.println(camion2.verCarga());
         // }
-        
-        // for(Animal a:establecimiento.getAnimales()){
-        //     ministerio.clasificarAnimal(a);
-        // }
-
-        // System.out.println(ministerio);
 
 
     }

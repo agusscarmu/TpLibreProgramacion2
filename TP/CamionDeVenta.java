@@ -40,7 +40,7 @@ public class CamionDeVenta {
     // Despues da de baja a los ganados que fueron cargados
     public void cargarCamion(Rodeo ganado){
         carga = ganado.llenarCamion(capacidadDeCarga, condicionDeCarga);
-        ganado.darDeBajaGanados(carga);
+        ganado.darDeBajaGanado(carga);
     }
 
     // Descarga del camion eliminando todos los animales que este incluia

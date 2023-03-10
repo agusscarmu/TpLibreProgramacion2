@@ -12,7 +12,9 @@ public class Rodeo extends Hacienda{
     }
 
     public void addGanado(Hacienda g){
-        ganado.add(g);
+        if(!ganado.contains(g)){
+            ganado.add(g);
+        }
     }
     
     public ArrayList<Hacienda> getGanado(){
@@ -36,31 +38,27 @@ public class Rodeo extends Hacienda{
     
 
     //Obtengo el promedio de las edades de los animales
-    public float getEdadComparable(){
-        return (float)getEdad()/getCantidadAnimales();
-    }
-
     @Override
     public int getEdad(){
         int edad=0;
-        for(Hacienda g:ganado){
-            edad+=g.getEdad();                                     //CONTROLAR!
+        for(Animal a:getAnimales()){
+            edad+=a.getEdad();                                     
         }
-        return edad;
+        return edad/getCantidadAnimales();
     }
     
    
     // Obtengo el peso promedio de todos los animales
-    public float getPesoComparable() {
-        return getPeso()/getCantidadAnimales();
+    @Override
+    public float getPeso() {
+        return getPesoTotal()/getCantidadAnimales();
     }
 
-    @Override
     //Obtengo el total de los pesos de los animales
-    public float getPeso(){
+    public float getPesoTotal(){
         int peso=0;
-        for(Hacienda g:ganado){
-            peso+=g.getPeso();
+        for(Animal a:getAnimales()){
+            peso+=a.getPeso();
         }
         return peso;
     }
@@ -71,36 +69,25 @@ public class Rodeo extends Hacienda{
     }
 
     /*
-    eliminarGanado lo que hace es hacer una copia exacta de la estructura de la que se llama pero sin
-    incluir los elementos de "a", los cuales son los animales que ya fueron cargados en el camion.
+    Una vez cargados en el camion se dan de baja los animales cargados
+    Para esto recorre la lista ganado y se fija en cada uno de los elementos para ver si esta contemplado dentro de
+    la lista "carga" devolviendo true si es asi y eliminandolo
     */
     @Override
-    public Hacienda eliminarGanado(ArrayList<Animal> a){
-        ArrayList<Hacienda> ganadoNoEliminado = new ArrayList<>();
+    public boolean darDeBajaGanado(ArrayList<Animal>carga){
         for(Hacienda g:ganado){
-            Hacienda noEliminado = g.eliminarGanado(a);
-            if(noEliminado!=null){
-                ganadoNoEliminado.add(noEliminado);
+            if(g.darDeBajaGanado(carga)){
+                ganado.remove(g);
             }
         }
-        Hacienda copiaClase = newInstance();
-        for(Hacienda g:ganadoNoEliminado){
-            ((Rodeo)copiaClase).addGanado(g);
-        }
-        return copiaClase;
+        return false;   
+
+        // return ganado.isEmpty(); -> reemplaza 'return false' si quisiera eliminar los rodeos/establecimientos vacios
     }
 
-    /*
-    Una vez cargados en el camion se dan de baja los animales cargados
-    Para esto la Lista "ganado" toma el valor de la lista de la funcion "eliminarGanado" en donde se 'eliminan' los
-    animales que fueron cargados 
-    */
-    public void darDeBajaGanados(ArrayList<Animal>carga){
-        ganado=((Rodeo)eliminarGanado(carga)).getGanado();
-    }
 
-    @Override
     // carga el camion la cantidad de veces solicitada en Hacienda junto a una condicion
+    @Override
     public ArrayList<Animal> cargar(Condicion c) {
         ArrayList<Animal> ganadoListo=new ArrayList<>();
         for(Hacienda g:ganado){
@@ -109,16 +96,21 @@ public class Rodeo extends Hacienda{
         return ganadoListo;
     }
 
-    @Override
+
     // La balanza al paso me trae el peso y el identificador del animal para pesarlo automaticamente
+    @Override
     public void balanzaAlPaso(int identificador, int peso) {
         for(Hacienda g:ganado){
             g.balanzaAlPaso(identificador, peso);
         }
     }
 
-    public Hacienda newInstance(){
-        return new Rodeo();
+    // Categoriza a cada uno de los animales dependiendo su clasificacion
+    @Override
+    public void categorizarAnimal(){
+        for(Hacienda g:ganado){
+            g.categorizarAnimal();
+        }
     }
 
 }
