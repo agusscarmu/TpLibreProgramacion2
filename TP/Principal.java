@@ -5,6 +5,7 @@ import TP.Condiciones.CondicionAnd;
 import TP.Condiciones.CondicionCapado;
 import TP.Condiciones.CondicionNot;
 import TP.Condiciones.CondicionOr;
+import TP.Condiciones.CondicionPorCategoria;
 import TP.Condiciones.CondicionPorEdadMenor;
 import TP.Condiciones.CondicionPorMacho;
 import TP.Condiciones.CondicionPorPesoMenor;
@@ -33,7 +34,7 @@ public class Principal {
         Animal animal8 = new Animal(19, 0, 5, 60, "Angus", true, false);
         Animal animal9 = new Animal(20, 0, 4, 50, "Angus", true, false);
         Animal animal10 = new Animal(132, 0, 38, 1000, "Angus", true, true);
-        Animal animal11 = new Animal(142, 2, 15, 500, "Hereford", true, false);
+        Animal animal11 = new Animal(142, 2, 15, 500, "Hereford", true, true);
         Animal animal12 = new Animal(152, 0, 28, 805, "Hereford", true, true);
         Animal animal13 = new Animal(126, 0, 18, 570, "Jersey", false, false);
         Animal animal14 = new Animal(127, 1, 10, 340, "Brangus", false, false);
@@ -66,8 +67,8 @@ public class Principal {
 
         Condicion cEdadMenor = new CondicionPorEdadMenor(20);
         Condicion cMacho = new CondicionPorMacho();
-        Condicion cPesoMenor = new CondicionPorPesoMenor(600);
-        Condicion cPorRaza = new CondicionPorRaza("Angus");
+        Condicion cPesoMenor = new CondicionPorPesoMenor(472);
+        Condicion cPorRaza = new CondicionPorRaza("Brangus");
         Condicion cPorParidos = new CondicionPorTernerosParidosMenor(3);
         Condicion cCapado = new CondicionCapado();
         Condicion cAnd = new CondicionAnd(cEdadMenor, cMacho);
@@ -80,25 +81,24 @@ public class Principal {
         CamionDeVenta camion4 = new CamionDeVenta(8, cMacho);
         CamionDeVenta camion5 = new CamionDeVenta(6, cPorParidos);
 
-        Ministerio ministerio = Ministerio.getInstance();
-
+        
         Condicion condicionLechal = new CondicionPorEdadMenor(8);
-                Condicion condicionMayor1 = new CondicionNot(condicionLechal);
-                Condicion condicionT = new CondicionPorEdadMenor(12);
+        Condicion condicionMayor1 = new CondicionNot(condicionLechal);
+        Condicion condicionT = new CondicionPorEdadMenor(12);
         Condicion condicionTernero = new CondicionAnd(condicionT, condicionMayor1);
-                Condicion condicionMayor2 = new CondicionNot(condicionT);
-                Condicion condicionT2 = new CondicionPorEdadMenor(24);
-        Condicion condicionAniojo = new CondicionAnd(condicionMayor2, condicionT2);
-                Condicion condicionMayor3 = new CondicionNot(new CondicionPorEdadMenor(24));
-        Condicion condicionCebon = new CondicionPorEdadMenor(48);
+        Condicion condicionMayorAlAnio = new CondicionNot(condicionT);
+        Condicion condicionT2 = new CondicionPorEdadMenor(24);
+        Condicion condicionAniojo = new CondicionAnd(condicionMayorAlAnio, condicionT2);
+        Condicion condicionMayor3 = new CondicionNot(new CondicionPorEdadMenor(24));
+        Condicion condicionCebon = new CondicionAnd(new CondicionAnd(new CondicionPorEdadMenor(48), condicionMayorAlAnio), cCapado);
         Condicion condicionNovillo = new CondicionAnd(condicionMayor3, condicionCebon);
-                Condicion condicionVacas = new CondicionNot(new CondicionPorEdadMenor(15));
-                Condicion ternerosParidos= new CondicionAnd(new CondicionPorTernerosParidosMenor(1), new CondicionNot(cMacho));
+        Condicion condicionVacas = new CondicionAnd(new CondicionNot(new CondicionPorEdadMenor(15)),new CondicionNot(cMacho));
+        Condicion ternerosParidos= new CondicionPorTernerosParidosMenor(1);
         Condicion condicionVaquillona = new CondicionAnd(condicionVacas, ternerosParidos);
-        Condicion condicionVaca = new CondicionAnd(new CondicionAnd(condicionVacas, new CondicionNot(cMacho)), new CondicionNot(new CondicionPorTernerosParidosMenor(1)));
+        Condicion condicionVaca = new CondicionAnd(condicionVacas, new CondicionNot(new CondicionPorTernerosParidosMenor(1)));
         Condicion condicionBuey = new CondicionAnd(new CondicionNot(condicionCebon), new CondicionCapado());
         Condicion condicionToro = new CondicionAnd(new CondicionNot(new CondicionCapado()), new CondicionPorMacho());
-
+        
         CategoriaAnimal Lechal = new CategoriaAnimal("Lechal", condicionLechal);
         CategoriaAnimal Ternero = new CategoriaAnimal("Ternero", condicionTernero);
         CategoriaAnimal Aniojo = new CategoriaAnimal("Aniojo", condicionAniojo);
@@ -108,6 +108,12 @@ public class Principal {
         CategoriaAnimal Vaca = new CategoriaAnimal("Vaca", condicionVaca);
         CategoriaAnimal Buey = new CategoriaAnimal("Buey", condicionBuey);
         CategoriaAnimal Toro = new CategoriaAnimal("Toro", condicionToro);
+
+        Condicion condicionPorCategoria = new CondicionPorCategoria(Toro);
+        
+        CamionDeVenta camionEspecial = new CamionDeVenta(6, cPorRaza);
+
+        Ministerio ministerio = Ministerio.getInstance();
 
         ministerio.agregarClasificacion(Lechal);
         ministerio.agregarClasificacion(Ternero);
@@ -119,16 +125,18 @@ public class Principal {
         ministerio.agregarClasificacion(Buey);
         ministerio.agregarClasificacion(Toro);
 
+        establecimiento.categorizarAnimal();
+
         int cantidadDeAnimales=establecimiento1.getCantidadAnimales();
         // System.out.println(cantidadDeAnimales);
-        float promedioEdad = establecimiento2.getEdad();
+        float promedioEdad = establecimiento.getEdad();
         float promedioedad1 = rodeo4.getEdad();
         float promedioedad2 = rodeo5.getEdad();
         System.out.println(promedioEdad);
         // // System.out.println(promedioedad1);
         // // System.out.println(promedioedad2);
         // // System.out.println(promedioEdad);
-        float peso = establecimiento1.getPesoTotal();
+        float peso = establecimiento.getPeso();
         System.out.println(peso);
         // Condicion cPMenorPrueba = new CondicionPorPesoMenor(380);
         // Condicion Prueba = new CondicionNot(cPMenorPrueba);
@@ -138,26 +146,27 @@ public class Principal {
         // System.out.println(establecimiento1.cargar(cPMenorPrueba));
 
 
-        // System.out.println();
-        // //PRUEBA CARGA Y DESCARGA DEL CAMION
-        // if(establecimiento.listoParaVenta(cPesoMenor)){
-        // System.out.println(establecimiento.cargar(cEdadMenor));
-        // camion2.cargarCamion(establecimiento);
-        // System.out.println("\n");
-        // System.out.println("Carga camion: "+camion2.verCarga());
-        // System.out.println("\n");
-        // System.out.println(establecimiento.cargar(cEdadMenor));
-        // camion2.descargarCamion();
-        // System.out.println("\n");
-        // camion2.cargarCamion(establecimiento);
-        // System.out.println("\n");
-        // System.out.println("Carga camion: "+camion2.verCarga());
-        // System.out.println("\n");
-        // System.out.println(establecimiento.cargar(cEdadMenor));
-        // camion2.descargarCamion();
-        // System.out.println("\n");
-        // System.out.println(camion2.verCarga());
-        // }
+        System.out.println();
+        //PRUEBA CARGA Y DESCARGA DEL CAMION
+        if(establecimiento.listoParaVenta(cPesoMenor)){
+        System.out.println(establecimiento.ganadoCumple(cEdadMenor));
+        camionEspecial.cargarCamion(establecimiento);
+        System.out.println("\n");
+        System.out.println("Carga camion: "+camionEspecial.verCarga());
+        System.out.println("\n");
+        System.out.println(establecimiento.ganadoCumple(cEdadMenor));
+        camionEspecial.descargarCamion();
+        System.out.println("\n");
+        camionEspecial.setCondicionDeCarga(cNot);
+        camionEspecial.cargarCamion(establecimiento);
+        System.out.println("\n");
+        System.out.println("Carga camion: "+camionEspecial.verCarga());
+        System.out.println("\n");
+        System.out.println(establecimiento.ganadoCumple(cEdadMenor));
+        camionEspecial.descargarCamion();
+        System.out.println("\n");
+        System.out.println(camionEspecial.verCarga());
+        }
 
 
     }

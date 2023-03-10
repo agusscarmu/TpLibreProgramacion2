@@ -22,6 +22,7 @@ public class Animal extends Hacienda{
         this.raza = raza;
         this.macho = macho;
         this.capado = capado;
+        this.categorias = new ArrayList<>();
     }
     
     public ArrayList<CategoriaAnimal> getCategorias(){
@@ -117,7 +118,7 @@ public class Animal extends Hacienda{
 
     @Override
     // Si cumple con la condicion retorno el animal en el arreglo, sino devuelvo el arreglo vacio
-    public ArrayList<Animal> cargar(Condicion c) {
+    public ArrayList<Animal> ganadoCumple(Condicion c) {
         ArrayList<Animal>g=new ArrayList<>();
         if(c.cumple(this)){
             g.add(this);
@@ -153,8 +154,16 @@ public class Animal extends Hacienda{
         ministerio.clasificarAnimal(this);
     }
 
+    public String MachoHembra(){
+        if(esMacho()){
+            return "Macho";
+        }else{
+            return "Hembra";
+        }
+    }
+
     @Override
     public String toString() {
-        return "\nIdentificador: "+identificador+",Raza: "+raza+",Edad: "+edad+",Peso: "+peso+",Macho: "+macho ;
+        return "\nIdentificador: "+identificador+",Raza: "+raza+",Edad: "+edad+",Peso: "+peso+",Sexo: "+MachoHembra()+",Categorias: "+getCategorias().toString();
     }
 }

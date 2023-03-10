@@ -36,6 +36,6 @@ public class CategoriaAnimal {
 
     @Override
     public String toString() {
-        return "\n\nCategoria: "+nombreCategoria;
+        return "\nCategoria: "+nombreCategoria;
     }
 }

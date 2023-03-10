@@ -3,7 +3,7 @@ package TP;
 import java.util.ArrayList;
 
 public class Ministerio {
-    ArrayList<CategoriaAnimal>clasificaciones;
+    private ArrayList<CategoriaAnimal>clasificaciones;
     private static Ministerio instancia;
 
     private Ministerio(){
@@ -32,8 +32,4 @@ public class Ministerio {
         }
     }
 
-    @Override
-    public String toString() {
-        return clasificaciones.toString();
-    }
 }

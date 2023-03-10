@@ -17,16 +17,13 @@ public abstract class Hacienda {
     
     // Llama a la funcion llenarCamion la cantidad de veces necesarias que es igual a la capacidad maxima del camion
     public ArrayList<Animal> llenarCamion(int capacidad, Condicion c){
-        ArrayList<Animal>g = new ArrayList<>(this.cargar(c));
+        ArrayList<Animal>g = new ArrayList<>(this.ganadoCumple(c));
         ArrayList<Animal>animales=new ArrayList<>();
         for(int i=0;i<g.size() && animales.size()<capacidad;i++){
             animales.add(g.get(i));
         }
         return animales;
     }
-    public float getPesoComparable(){
-        return getPeso();
-    }
     
-    public abstract ArrayList<Animal> cargar(Condicion c);
+    public abstract ArrayList<Animal> ganadoCumple(Condicion c);
 }

@@ -75,9 +75,9 @@ public class Rodeo extends Hacienda{
     */
     @Override
     public boolean darDeBajaGanado(ArrayList<Animal>carga){
-        for(Hacienda g:ganado){
-            if(g.darDeBajaGanado(carga)){
-                ganado.remove(g);
+        for(int i=0;i<ganado.size();i++){
+            if(ganado.get(i).darDeBajaGanado(carga)){
+                ganado.remove(ganado.get(i));
             }
         }
         return false;   
@@ -88,10 +88,10 @@ public class Rodeo extends Hacienda{
 
     // carga el camion la cantidad de veces solicitada en Hacienda junto a una condicion
     @Override
-    public ArrayList<Animal> cargar(Condicion c) {
+    public ArrayList<Animal> ganadoCumple(Condicion c) {
         ArrayList<Animal> ganadoListo=new ArrayList<>();
         for(Hacienda g:ganado){
-            ganadoListo.addAll(g.cargar(c));
+            ganadoListo.addAll(g.ganadoCumple(c));
         }
         return ganadoListo;
     }

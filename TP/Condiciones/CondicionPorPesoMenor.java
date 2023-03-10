@@ -16,7 +16,7 @@ public class CondicionPorPesoMenor extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return h.getPesoComparable()<peso;
+        return h.getPeso()<peso;
     }
     
 }
