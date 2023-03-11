@@ -162,6 +162,9 @@ public class Principal {
         System.out.println(animal14);
         animal14.setTernerosParidos(2);
         System.out.println(animal14);
+        Toro.setCondicion(condicionVaca);
+        Vaca.setCondicion(condicionLechal);
+        System.out.println(animal14);
         // camionEspecial.cargarCamion(establecimiento);
         // System.out.println("\n");
         // System.out.println("Carga camion: "+camionEspecial.verCarga());
