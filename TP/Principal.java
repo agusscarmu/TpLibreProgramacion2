@@ -17,9 +17,9 @@ public class Principal {
     public static void main(String[]args){
         
         // CARGA DE CONDICIONES
-        Condicion cEdadMenor = new CondicionPorEdadMenor(20);
+        Condicion cEdadMenor = new CondicionPorEdadMenor(25);
         Condicion cMacho = new CondicionPorMacho();
-        Condicion cPesoMenor = new CondicionPorPesoMenor(472);
+        Condicion cPesoMenor = new CondicionPorPesoMenor(470);
         Condicion cPorRaza = new CondicionPorRaza("Brangus");
         Condicion cPorParidos = new CondicionPorTernerosParidosMenor(3);
         Condicion cCapado = new CondicionCapado();
@@ -93,12 +93,12 @@ public class Principal {
 
         // CARGA DE ANIMALES
         Animal animal1 = new Animal(12, 0, 8, 120, "Jersey", false, false);
-        Animal animal2 = new Animal(13, 1, 31, 800, "Jersey", false, false);
+        Animal animal2 = new Animal(13, 2, 31, 800, "Jersey", false, false);
         Animal animal3 = new Animal(14, 4, 8, 100, "Brangus", false, false);
         Animal animal4 = new Animal(16, 0, 8, 100, "Angus", true, false);
         Animal animal5 = new Animal(17, 0, 28, 890, "Hereford", true, true);
         Animal animal6 = new Animal(17, 0, 29, 880, "Hereford", true, false);
-        Animal animal7 = new Animal(118, 3, 8, 100, "Jersey", false, false);
+        Animal animal7 = new Animal(118, 0, 8, 100, "Jersey", false, false);
         Animal animal8 = new Animal(19, 0, 5, 60, "Angus", true, false);
         Animal animal9 = new Animal(20, 0, 4, 50, "Angus", true, false);
         Animal animal10 = new Animal(132, 0, 38, 1000, "Angus", true, true);
@@ -133,56 +133,6 @@ public class Principal {
         rodeo5.addGanado(animal13);
         rodeo5.addGanado(animal14);
         rodeo5.addGanado(animal15);
-
-        
-        int cantidadDeAnimales=establecimiento1.getCantidadAnimales();
-        // System.out.println(cantidadDeAnimales);
-        float promedioEdad = establecimiento.getEdad();
-        float promedioedad1 = rodeo4.getEdad();
-        float promedioedad2 = rodeo5.getEdad();
-        System.out.println(promedioEdad);
-        // // System.out.println(promedioedad1);
-        // // System.out.println(promedioedad2);
-        // // System.out.println(promedioEdad);
-        float peso = establecimiento.getPeso();
-        System.out.println(peso);
-        // Condicion cPMenorPrueba = new CondicionPorPesoMenor(380);
-        // Condicion Prueba = new CondicionNot(cPMenorPrueba);
-        // System.out.println(establecimiento1.listoParaVenta(cPMenorPrueba));
-
-        // ((CondicionPorPesoMenor)cPMenorPrueba).setCondicionPeso(200);
-        // System.out.println(establecimiento1.cargar(cPMenorPrueba));
-
-
-        System.out.println();
-        //PRUEBA CARGA Y DESCARGA DEL CAMION
-        if(establecimiento.listoParaVenta(cPesoMenor)){
-        System.out.println(animal14);
-        animal14.setEdad(18);
-        System.out.println(animal14);
-        animal14.setTernerosParidos(2);
-        System.out.println(animal14);
-        Toro.setCondicion(condicionVaca);
-        Vaca.setCondicion(condicionLechal);
-        System.out.println(animal14);
-        // camionEspecial.cargarCamion(establecimiento);
-        // System.out.println("\n");
-        // System.out.println("Carga camion: "+camionEspecial.verCarga());
-        // System.out.println("\n");
-        // System.out.println(animal14);
-        // camionEspecial.descargarCamion();
-        // System.out.println("\n");
-        // camionEspecial.setCondicionDeCarga(cNot);
-        // camionEspecial.cargarCamion(establecimiento);
-        // System.out.println("\n");
-        // System.out.println("Carga camion: "+camionEspecial.verCarga());
-        // System.out.println("\n");
-        // System.out.println(animal14);
-        // camionEspecial.descargarCamion();
-        // System.out.println("\n");
-        // System.out.println(camionEspecial.verCarga());
-        }
-
 
     }
 }

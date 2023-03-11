@@ -179,4 +179,5 @@ public class Animal extends Hacienda{
     public String toString() {
         return "\nIdentificador: "+identificador+",Raza: "+raza+",Edad: "+edad+",Peso: "+peso+",Sexo: "+MachoHembra()+",Categorias: "+getCategorias().toString();
     }
+
 }

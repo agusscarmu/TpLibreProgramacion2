@@ -2,7 +2,7 @@ package TP;
 
 import TP.Condiciones.Condicion;
 
-public class CategoriaAnimal {
+public class CategoriaAnimal{
     private String nombreCategoria;
     private Condicion condicion;
 
