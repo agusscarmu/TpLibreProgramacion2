@@ -43,8 +43,7 @@ public class Animal extends Hacienda{
         }
     }
     
-    // Vuelve a categorizar al animal en base a sus atributos 
-    // (Si es que estos cambiaron o cambiaron las politicas del ministerio)
+    // Vuelve a categorizar al animal en base a sus atributos (si estos cambiaron lo vuelve a categorizar)
     public void categorizarAnimal() {
         sistema.clasificarAnimal(this);
     }
@@ -87,7 +86,6 @@ public class Animal extends Hacienda{
 
     public void setIdentificador(int identificador) {
         this.identificador = identificador;
-        categorizarAnimal();
     }
 
 
