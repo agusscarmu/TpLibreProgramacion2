@@ -13,7 +13,6 @@ public abstract class Hacienda {
     public abstract void balanzaAlPaso(int identificador, int peso);
     public abstract ArrayList<Animal> getAnimales();
     public abstract boolean darDeBajaGanado(ArrayList<Animal> a);
-    public abstract void categorizarAnimal();
     
     // Llama a la funcion llenarCamion la cantidad de veces necesarias que es igual a la capacidad maxima del camion
     public ArrayList<Animal> llenarCamion(int capacidad, Condicion c){
@@ -24,6 +23,6 @@ public abstract class Hacienda {
         }
         return animales;
     }
-    
+
     public abstract ArrayList<Animal> ganadoCumple(Condicion c);
 }

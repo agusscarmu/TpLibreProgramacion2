@@ -15,56 +15,8 @@ import TP.Condiciones.CondicionPorTernerosParidosMenor;
 public class Principal {
     
     public static void main(String[]args){
-        Rodeo establecimiento = new Rodeo();
-        Rodeo establecimiento1 = new Rodeo();
-        Rodeo establecimiento2 = new Rodeo();
-        Rodeo rodeo1 = new Rodeo();
-        Rodeo rodeo2 = new Rodeo();
-        Rodeo rodeo3 = new Rodeo();
-        Rodeo rodeo4 = new Rodeo();
-        Rodeo rodeo5 = new Rodeo();
-
-        Animal animal1 = new Animal(12, 0, 8, 120, "Jersey", false, false);
-        Animal animal2 = new Animal(13, 1, 31, 800, "Jersey", false, false);
-        Animal animal3 = new Animal(14, 4, 8, 100, "Brangus", false, false);
-        Animal animal4 = new Animal(16, 0, 8, 100, "Angus", true, false);
-        Animal animal5 = new Animal(17, 0, 28, 890, "Hereford", true, true);
-        Animal animal6 = new Animal(17, 0, 29, 880, "Hereford", true, false);
-        Animal animal7 = new Animal(118, 3, 8, 100, "Jersey", false, false);
-        Animal animal8 = new Animal(19, 0, 5, 60, "Angus", true, false);
-        Animal animal9 = new Animal(20, 0, 4, 50, "Angus", true, false);
-        Animal animal10 = new Animal(132, 0, 38, 1000, "Angus", true, true);
-        Animal animal11 = new Animal(142, 2, 15, 500, "Hereford", true, true);
-        Animal animal12 = new Animal(152, 0, 28, 805, "Hereford", true, true);
-        Animal animal13 = new Animal(126, 0, 18, 570, "Jersey", false, false);
-        Animal animal14 = new Animal(127, 1, 10, 340, "Brangus", false, false);
-        Animal animal15 = new Animal(128, 5, 59, 750, "Brangus", false, false);
-
-        rodeo1.addGanado(animal1);
-        rodeo1.addGanado(animal2);
-        rodeo1.addGanado(animal3);
-        rodeo2.addGanado(animal4);
-        rodeo2.addGanado(animal5);
-        rodeo2.addGanado(animal6);
-        rodeo3.addGanado(animal7);
-        rodeo3.addGanado(animal8);
-        rodeo4.addGanado(animal9);
-        rodeo4.addGanado(animal10);
-        rodeo4.addGanado(animal11);
-        rodeo5.addGanado(animal12);
-        rodeo5.addGanado(animal13);
-        rodeo5.addGanado(animal14);
-        rodeo5.addGanado(animal15);
         
-        establecimiento1.addGanado(rodeo1);
-        establecimiento1.addGanado(rodeo2);
-        establecimiento1.addGanado(rodeo3);
-        establecimiento2.addGanado(rodeo4);
-        establecimiento2.addGanado(rodeo5);
-
-        establecimiento.addGanado(establecimiento1);
-        establecimiento.addGanado(establecimiento2);
-
+        // CARGA DE CONDICIONES
         Condicion cEdadMenor = new CondicionPorEdadMenor(20);
         Condicion cMacho = new CondicionPorMacho();
         Condicion cPesoMenor = new CondicionPorPesoMenor(472);
@@ -75,13 +27,14 @@ public class Principal {
         Condicion cOr = new CondicionOr(cPorRaza, cCapado);
         Condicion cNot = new CondicionNot(cMacho);
         
+        // CARGA DE CAMIONES
         CamionDeVenta camion1 = new CamionDeVenta(5, cNot);
         CamionDeVenta camion2 = new CamionDeVenta(4, cEdadMenor);
         CamionDeVenta camion3 = new CamionDeVenta(6, cPesoMenor);
         CamionDeVenta camion4 = new CamionDeVenta(8, cMacho);
         CamionDeVenta camion5 = new CamionDeVenta(6, cPorParidos);
-
         
+        // CARGA DE CONDICIONES PARA CATEGORIAS
         Condicion condicionLechal = new CondicionPorEdadMenor(8);
         Condicion condicionMayor1 = new CondicionNot(condicionLechal);
         Condicion condicionT = new CondicionPorEdadMenor(12);
@@ -99,6 +52,7 @@ public class Principal {
         Condicion condicionBuey = new CondicionAnd(new CondicionNot(condicionCebon), new CondicionCapado());
         Condicion condicionToro = new CondicionAnd(new CondicionNot(new CondicionCapado()), new CondicionPorMacho());
         
+        // CARGA DE CATEGORIAS
         CategoriaAnimal Lechal = new CategoriaAnimal("Lechal", condicionLechal);
         CategoriaAnimal Ternero = new CategoriaAnimal("Ternero", condicionTernero);
         CategoriaAnimal Aniojo = new CategoriaAnimal("Aniojo", condicionAniojo);
@@ -108,13 +62,15 @@ public class Principal {
         CategoriaAnimal Vaca = new CategoriaAnimal("Vaca", condicionVaca);
         CategoriaAnimal Buey = new CategoriaAnimal("Buey", condicionBuey);
         CategoriaAnimal Toro = new CategoriaAnimal("Toro", condicionToro);
-
+        
+        // CONDICION POR CATEGORIA
         Condicion condicionPorCategoria = new CondicionPorCategoria(Toro);
         
         CamionDeVenta camionEspecial = new CamionDeVenta(6, cPorRaza);
-
-        Ministerio ministerio = Ministerio.getInstance();
-
+        
+        // PRIMER INSTANCIA DE MINISTERIO (a partir de ahora queda instanciado)
+        SistemaGanadero ministerio = SistemaGanadero.getInstance();
+        
         ministerio.agregarClasificacion(Lechal);
         ministerio.agregarClasificacion(Ternero);
         ministerio.agregarClasificacion(Aniojo);
@@ -124,9 +80,61 @@ public class Principal {
         ministerio.agregarClasificacion(Vaca);
         ministerio.agregarClasificacion(Buey);
         ministerio.agregarClasificacion(Toro);
+        
+        // CARGA DE RODEOS
+        Rodeo establecimiento = new Rodeo();
+        Rodeo establecimiento1 = new Rodeo();
+        Rodeo establecimiento2 = new Rodeo();
+        Rodeo rodeo1 = new Rodeo();
+        Rodeo rodeo2 = new Rodeo();
+        Rodeo rodeo3 = new Rodeo();
+        Rodeo rodeo4 = new Rodeo();
+        Rodeo rodeo5 = new Rodeo();
 
-        establecimiento.categorizarAnimal();
+        // CARGA DE ANIMALES
+        Animal animal1 = new Animal(12, 0, 8, 120, "Jersey", false, false);
+        Animal animal2 = new Animal(13, 1, 31, 800, "Jersey", false, false);
+        Animal animal3 = new Animal(14, 4, 8, 100, "Brangus", false, false);
+        Animal animal4 = new Animal(16, 0, 8, 100, "Angus", true, false);
+        Animal animal5 = new Animal(17, 0, 28, 890, "Hereford", true, true);
+        Animal animal6 = new Animal(17, 0, 29, 880, "Hereford", true, false);
+        Animal animal7 = new Animal(118, 3, 8, 100, "Jersey", false, false);
+        Animal animal8 = new Animal(19, 0, 5, 60, "Angus", true, false);
+        Animal animal9 = new Animal(20, 0, 4, 50, "Angus", true, false);
+        Animal animal10 = new Animal(132, 0, 38, 1000, "Angus", true, true);
+        Animal animal11 = new Animal(142, 2, 15, 500, "Hereford", true, true);
+        Animal animal12 = new Animal(152, 0, 28, 805, "Hereford", true, true);
+        Animal animal13 = new Animal(126, 0, 18, 570, "Jersey", false, false);
+        Animal animal14 = new Animal(127, 0, 10, 340, "Brangus", false, false);
+        Animal animal15 = new Animal(128, 5, 59, 750, "Brangus", false, false);
 
+        
+        establecimiento1.addGanado(rodeo1);
+        establecimiento1.addGanado(rodeo2);
+        establecimiento1.addGanado(rodeo3);
+        establecimiento2.addGanado(rodeo4);
+        establecimiento2.addGanado(rodeo5);
+        
+        establecimiento.addGanado(establecimiento1);
+        establecimiento.addGanado(establecimiento2);
+        
+        rodeo1.addGanado(animal1);
+        rodeo1.addGanado(animal2);
+        rodeo1.addGanado(animal3);
+        rodeo2.addGanado(animal4);
+        rodeo2.addGanado(animal5);
+        rodeo2.addGanado(animal6);
+        rodeo3.addGanado(animal7);
+        rodeo3.addGanado(animal8);
+        rodeo4.addGanado(animal9);
+        rodeo4.addGanado(animal10);
+        rodeo4.addGanado(animal11);
+        rodeo5.addGanado(animal12);
+        rodeo5.addGanado(animal13);
+        rodeo5.addGanado(animal14);
+        rodeo5.addGanado(animal15);
+
+        
         int cantidadDeAnimales=establecimiento1.getCantidadAnimales();
         // System.out.println(cantidadDeAnimales);
         float promedioEdad = establecimiento.getEdad();
@@ -149,23 +157,27 @@ public class Principal {
         System.out.println();
         //PRUEBA CARGA Y DESCARGA DEL CAMION
         if(establecimiento.listoParaVenta(cPesoMenor)){
-        System.out.println(establecimiento.ganadoCumple(cEdadMenor));
-        camionEspecial.cargarCamion(establecimiento);
-        System.out.println("\n");
-        System.out.println("Carga camion: "+camionEspecial.verCarga());
-        System.out.println("\n");
-        System.out.println(establecimiento.ganadoCumple(cEdadMenor));
-        camionEspecial.descargarCamion();
-        System.out.println("\n");
-        camionEspecial.setCondicionDeCarga(cNot);
-        camionEspecial.cargarCamion(establecimiento);
-        System.out.println("\n");
-        System.out.println("Carga camion: "+camionEspecial.verCarga());
-        System.out.println("\n");
-        System.out.println(establecimiento.ganadoCumple(cEdadMenor));
-        camionEspecial.descargarCamion();
-        System.out.println("\n");
-        System.out.println(camionEspecial.verCarga());
+        System.out.println(animal14);
+        animal14.setEdad(18);
+        System.out.println(animal14);
+        animal14.setTernerosParidos(2);
+        System.out.println(animal14);
+        // camionEspecial.cargarCamion(establecimiento);
+        // System.out.println("\n");
+        // System.out.println("Carga camion: "+camionEspecial.verCarga());
+        // System.out.println("\n");
+        // System.out.println(animal14);
+        // camionEspecial.descargarCamion();
+        // System.out.println("\n");
+        // camionEspecial.setCondicionDeCarga(cNot);
+        // camionEspecial.cargarCamion(establecimiento);
+        // System.out.println("\n");
+        // System.out.println("Carga camion: "+camionEspecial.verCarga());
+        // System.out.println("\n");
+        // System.out.println(animal14);
+        // camionEspecial.descargarCamion();
+        // System.out.println("\n");
+        // System.out.println(camionEspecial.verCarga());
         }
 
 

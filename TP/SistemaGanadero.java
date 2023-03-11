@@ -2,17 +2,17 @@ package TP;
 
 import java.util.ArrayList;
 
-public class Ministerio {
+public class SistemaGanadero {
     private ArrayList<CategoriaAnimal>clasificaciones;
-    private static Ministerio instancia;
+    private static SistemaGanadero instancia;
 
-    private Ministerio(){
+    private SistemaGanadero(){
         this.clasificaciones=new ArrayList<>();
     }
 
-    public static Ministerio getInstance(){
+    public static SistemaGanadero getInstance(){
         if(instancia==null){
-            instancia=new Ministerio();
+            instancia=new SistemaGanadero();
         }
         return instancia;
     }

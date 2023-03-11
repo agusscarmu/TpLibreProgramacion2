@@ -105,12 +105,4 @@ public class Rodeo extends Hacienda{
         }
     }
 
-    // Categoriza a cada uno de los animales dependiendo su clasificacion
-    @Override
-    public void categorizarAnimal(){
-        for(Hacienda g:ganado){
-            g.categorizarAnimal();
-        }
-    }
-
 }

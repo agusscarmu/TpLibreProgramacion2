@@ -31,7 +31,11 @@ public class CategoriaAnimal {
     public void comprobar(Animal a){
         if(condicion.cumple(a)){
             a.addCategoria(this);
-        }
+        }else{ 
+            if(a.getCategorias().contains(this)){     // <- Controla si el animal no cumple con la condicion y contiene la categoria
+                a.removeCategoria(this);              // <- De ser asi la categoria es eliminada del animal  
+            }
+        } 
     }
 
     @Override
