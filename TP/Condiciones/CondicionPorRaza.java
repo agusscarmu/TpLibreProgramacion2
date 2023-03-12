@@ -12,7 +12,11 @@ public class CondicionPorRaza extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return ((Animal)h).getRaza().equals(raza);
+        try{
+            return ((Animal)h).getRaza().equals(raza);
+        }catch(Exception e){
+            return false;
+        }
     }
     
 }

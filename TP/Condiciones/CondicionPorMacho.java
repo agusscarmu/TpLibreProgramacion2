@@ -7,7 +7,12 @@ public class CondicionPorMacho extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return ((Animal)h).esMacho();
+        try{
+            return ((Animal)h).esMacho();
+        }catch(Exception e){
+            return false;
+        }
+        
     }
 
 }

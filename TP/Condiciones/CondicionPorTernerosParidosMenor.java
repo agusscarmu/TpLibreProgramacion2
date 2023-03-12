@@ -20,7 +20,12 @@ public class CondicionPorTernerosParidosMenor extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return ((Animal)h).getTernerosParidos()<ternerosParidos;
+        try{
+            return ((Animal)h).getTernerosParidos()<ternerosParidos;
+        }catch(Exception e){
+            return false;
+        }
+        
     }
 
 

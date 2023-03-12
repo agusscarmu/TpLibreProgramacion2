@@ -7,7 +7,12 @@ public class CondicionCapado extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return ((Animal)h).capado();
+        try{
+            return ((Animal)h).capado();
+        }catch(Exception e){
+            return false;
+        }
+        
     }
     
 }

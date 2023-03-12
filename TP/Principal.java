@@ -134,5 +134,6 @@ public class Principal {
         rodeo5.addGanado(animal14);
         rodeo5.addGanado(animal15);
 
+        System.out.println(cPorRaza.cumple(rodeo1));
     }
 }

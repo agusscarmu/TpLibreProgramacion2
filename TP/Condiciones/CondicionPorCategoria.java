@@ -18,7 +18,12 @@ public class CondicionPorCategoria extends Condicion{
 
     @Override
     public boolean cumple(Hacienda h) {
-        return ((Animal)h).getCategorias().contains(categoria);
+        try{
+            return ((Animal)h).getCategorias().contains(categoria);
+        }catch(Exception e){
+            return false;
+        }
+        
     }
     
 }
