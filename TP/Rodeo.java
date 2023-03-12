@@ -30,7 +30,7 @@ public class Rodeo extends Hacienda{
         }
         return a;
     }
-    @Override
+
     // Obtengo la cantidad total de animales
     public int getCantidadAnimales(){
         return getAnimales().size();

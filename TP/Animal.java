@@ -129,11 +129,6 @@ public class Animal extends Hacienda{
         categorizarAnimal();
     }
 
-    @Override
-    public int getCantidadAnimales() {
-        return 1;
-    }
-
     // Si cumple con la condicion retorno el animal en el arreglo, sino devuelvo el arreglo vacio
     @Override
     public ArrayList<Animal> ganadoCumple(Condicion c) {

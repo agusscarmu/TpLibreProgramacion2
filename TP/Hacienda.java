@@ -6,8 +6,6 @@ import TP.Condiciones.Condicion;
 
 public abstract class Hacienda {
     
-
-    public abstract int getCantidadAnimales();
     public abstract int getEdad();
     public abstract float getPeso();
     public abstract void balanzaAlPaso(int identificador, int peso);
