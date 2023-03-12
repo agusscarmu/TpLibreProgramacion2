@@ -1,9 +1,8 @@
 package TP.Condiciones;
 
 import TP.Animal;
-import TP.Hacienda;
 
-public class CondicionPorTernerosParidosMenor extends Condicion{
+public class CondicionPorTernerosParidosMenor extends CondicionAnimal{
     private int ternerosParidos;
 
     public CondicionPorTernerosParidosMenor(int ternerosParidos){
@@ -19,12 +18,8 @@ public class CondicionPorTernerosParidosMenor extends Condicion{
     }
 
     @Override
-    public boolean cumple(Hacienda h) {
-        try{
-            return ((Animal)h).getTernerosParidos()<ternerosParidos;
-        }catch(Exception e){
-            return false;
-        }
+    public boolean cumple(Animal h){
+        return h.getTernerosParidos()<ternerosParidos;
         
     }
 

@@ -2,6 +2,7 @@ package TP;
 
 import TP.Condiciones.Condicion;
 import TP.Condiciones.CondicionAnd;
+import TP.Condiciones.CondicionAnimal;
 import TP.Condiciones.CondicionCapado;
 import TP.Condiciones.CondicionNot;
 import TP.Condiciones.CondicionOr;
@@ -17,10 +18,10 @@ public class Principal {
     public static void main(String[]args){
         
         // CARGA DE CONDICIONES
-        Condicion cEdadMenor = new CondicionPorEdadMenor(25);
+        Condicion cEdadMenor = new CondicionPorEdadMenor(16);
         Condicion cMacho = new CondicionPorMacho();
         Condicion cPesoMenor = new CondicionPorPesoMenor(470);
-        Condicion cPorRaza = new CondicionPorRaza("Brangus");
+        CondicionAnimal cPorRaza = new CondicionPorRaza("Brangus");
         Condicion cPorParidos = new CondicionPorTernerosParidosMenor(3);
         Condicion cCapado = new CondicionCapado();
         Condicion cAnd = new CondicionAnd(cEdadMenor, cMacho);
@@ -133,7 +134,6 @@ public class Principal {
         rodeo5.addGanado(animal13);
         rodeo5.addGanado(animal14);
         rodeo5.addGanado(animal15);
-
-        System.out.println(cPorRaza.cumple(rodeo1));
+        
     }
 }

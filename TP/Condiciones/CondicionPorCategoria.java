@@ -2,9 +2,8 @@ package TP.Condiciones;
 
 import TP.Animal;
 import TP.CategoriaAnimal;
-import TP.Hacienda;
 
-public class CondicionPorCategoria extends Condicion{
+public class CondicionPorCategoria extends CondicionAnimal{
 
     private CategoriaAnimal categoria;
 
@@ -17,13 +16,8 @@ public class CondicionPorCategoria extends Condicion{
     }
 
     @Override
-    public boolean cumple(Hacienda h) {
-        try{
-            return ((Animal)h).getCategorias().contains(categoria);
-        }catch(Exception e){
-            return false;
-        }
-        
+    public boolean cumple(Animal h) {
+        return h.getCategorias().contains(categoria);        
     }
     
 }

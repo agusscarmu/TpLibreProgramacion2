@@ -1,9 +1,8 @@
 package TP.Condiciones;
 
 import TP.Animal;
-import TP.Hacienda;
 
-public class CondicionPorRaza extends Condicion{
+public class CondicionPorRaza extends CondicionAnimal{
     private String raza;
 
     public CondicionPorRaza(String raza){
@@ -11,12 +10,8 @@ public class CondicionPorRaza extends Condicion{
     }
 
     @Override
-    public boolean cumple(Hacienda h) {
-        try{
-            return ((Animal)h).getRaza().equals(raza);
-        }catch(Exception e){
-            return false;
-        }
+    public boolean cumple(Animal h) {
+        return h.getRaza().equals(raza);
     }
     
 }
